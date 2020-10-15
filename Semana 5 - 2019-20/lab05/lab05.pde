@@ -28,7 +28,7 @@ void setup() {
   gorra_chef=loadShape("cocinero.svg");
   gorro_fiesta=loadShape("fiesta.svg");
 
-  gafas1=loadShape("gafas1.svg");
+  gafas1=loadShape("gafas2.svg");
 
 
   lista_gorras[0]=gorra_santa;
