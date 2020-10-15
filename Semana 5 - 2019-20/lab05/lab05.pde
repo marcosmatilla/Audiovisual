@@ -7,14 +7,15 @@ Capture video;
 OpenCV opencvCara, opencvOjos, opencvBoca;
 
 PShape gorra_chef, gorro_fiesta, gorra_santa;
-PShape gafas_ra, gafas_ra2, gafas_inteligentes;
+PShape gafas1, gafas2;
 
 PShape[] lista_gorras=new PShape[3];
-PShape[] lista_gafas=new PShape[3];
+
 
 boolean gorra = false, gafas = false;
 
 int actual=0;
+
 
 void setup() {
   size(640, 360);
@@ -27,9 +28,14 @@ void setup() {
   gorra_chef=loadShape("cocinero.svg");
   gorro_fiesta=loadShape("fiesta.svg");
 
+  gafas1=loadShape("gafas1.svg");
+
+
   lista_gorras[0]=gorra_santa;
   lista_gorras[1]=gorro_fiesta;
   lista_gorras[2]=gorra_chef;
+
+
 
   video = new Capture(this, 640, 360);
 
@@ -59,9 +65,9 @@ void draw() {
 
     // Como mucho se procesa una cara (la más grande)
     for (int i = 0; i < min(1, caras.length); i++) {
-      println(caras[i].x + "," + caras[i].y);
-      rect(caras[i].x, caras[i].y, caras[i].width, caras[i].height);
-      print(lista_gorras[actual]);
+      //println(caras[i].x + "," + caras[i].y);
+      //rect(caras[i].x, caras[i].y, caras[i].width, caras[i].height);
+      //print(lista_gorras[actual]);
       if (gorra) {
         shape(lista_gorras[actual], caras[i].x, caras[i].y-caras[i].height/2, caras[i].width, caras[i].height/2);
       }
@@ -74,8 +80,11 @@ void draw() {
     for (int i=0; i < min(2, ojos.length); i++) {
       for (int j=0; j < min(1, caras.length); j++) {
         if (dentroCara(ojos[i], caras[j])) {
-          println(ojos[i].x + "," + ojos[i].y);
-          rect(ojos[i].x, ojos[i].y, ojos[i].width, ojos[i].height);
+          //println(ojos[i].x + "," + ojos[i].y);
+          //rect(ojos[i].x, ojos[i].y, ojos[i].width, ojos[i].height);
+          if (gafas) {
+            shape(gafas1, caras[j].x, ojos[j].y-ojos[j].height/2, caras[j].width, caras[j].height/2);
+          }
         }
       }
     }
@@ -87,8 +96,8 @@ void draw() {
     for (int i=0; i < min(1, bocas.length); i++) {
       for (int j=0; j < min(1, caras.length); j++) {
         if (dentroCara(bocas[i], caras[j])) {
-          println(bocas[i].x + "," + bocas[i].y);
-          rect(bocas[i].x, bocas[i].y, bocas[i].width, bocas[i].height);
+          //println(bocas[i].x + "," + bocas[i].y);
+          //rect(bocas[i].x, bocas[i].y, bocas[i].width, bocas[i].height);
         }
       }
     }
@@ -123,6 +132,7 @@ boolean dentroCara(Rectangle detalle, Rectangle cara) {
 }
 
 void keyPressed() {
+
   if (key==CODED && keyCode == RIGHT) {
     if (actual >= 0 && actual <lista_gorras.length-1) {
       actual++;
@@ -132,8 +142,10 @@ void keyPressed() {
       actual--;
     }
   }
-
   if (key=='s') {
     gorra = gorra ? false : true;
+  }
+  if (key=='g') {
+    gafas = gafas ? false : true;
   }
 }
