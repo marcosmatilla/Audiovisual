@@ -3,19 +3,14 @@ import processing.video.*;
 import java.awt.Rectangle;
 
 Capture video;
-
 OpenCV opencvCara, opencvOjos, opencvBoca;
 
 PShape gorra_chef, gorro_fiesta, gorra_santa;
 PShape gafas1, gafas2;
-
 PShape[] lista_gorras=new PShape[3];
 
-
 boolean gorra = false, gafas = false;
-
 int actual=0;
-
 
 void setup() {
   size(640, 360);
@@ -24,18 +19,7 @@ void setup() {
   opencvOjos = new OpenCV(this, 640, 360);
   opencvBoca = new OpenCV(this, 640, 360);
 
-  gorra_santa=loadShape("santa.svg");
-  gorra_chef=loadShape("cocinero.svg");
-  gorro_fiesta=loadShape("fiesta.svg");
-
-  gafas1=loadShape("gafas2.svg");
-
-
-  lista_gorras[0]=gorra_santa;
-  lista_gorras[1]=gorro_fiesta;
-  lista_gorras[2]=gorra_chef;
-
-
+  loadShapes();
 
   video = new Capture(this, 640, 360);
 
@@ -44,6 +28,18 @@ void setup() {
   opencvBoca.loadCascade(OpenCV.CASCADE_MOUTH);
 
   video.start();
+}
+
+void loadShapes() {
+  gorra_santa=loadShape("santa.svg");
+  gorra_chef=loadShape("cocinero.svg");
+  gorro_fiesta=loadShape("fiesta.svg");
+
+  gafas1=loadShape("gafas2.svg");
+
+  lista_gorras[0]=gorra_santa;
+  lista_gorras[1]=gorro_fiesta;
+  lista_gorras[2]=gorra_chef;
 }
 
 void draw() {
