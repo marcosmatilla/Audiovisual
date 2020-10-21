@@ -2,6 +2,7 @@ import gab.opencv.*;
 import processing.video.*;
 import java.awt.Rectangle;
 
+
 Capture video;
 OpenCV opencvCara, opencvOjos, opencvBoca;
 
@@ -15,6 +16,7 @@ int actual=0;
 void setup() {
   size(640, 360);
 
+  
   opencvCara = new OpenCV(this, 640, 360); // Tiene que tener la misma resolución que el vídeo
   opencvOjos = new OpenCV(this, 640, 360);
   opencvBoca = new OpenCV(this, 640, 360);
@@ -101,6 +103,7 @@ void draw() {
   //noLoop();
 }
 
+
 void movieEvent(Movie movie) {
   movie.read();
 }
@@ -144,4 +147,5 @@ void keyPressed() {
   if (key=='g') {
     gafas = gafas ? false : true;
   }
+
 }
