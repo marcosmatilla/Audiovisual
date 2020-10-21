@@ -1,3 +1,5 @@
+import processing.svg.*;
+
 float topx, topy, botx, boty, nosey, nosex, eyex, eyey, mouth, brow1, brow2, pupilsLine;
 int x, y;
 void setup() {
@@ -23,6 +25,9 @@ void setup() {
 
   y=height/2;
   x=width/2;
+  
+  noLoop();
+  beginRecord(SVG, "marcos.svg");
 }
 
 void draw() {
@@ -62,6 +67,8 @@ void draw() {
   //brow
   line(x-5, y-brow1, x-20, y-brow2);
   line(x+5, y-brow1, x+20, y-brow2);
+  
+  endRecord();
 }
 
 void keyPressed() {
