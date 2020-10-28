@@ -25,9 +25,8 @@ void setup() {
 
   y=height/2;
   x=width/2;
-  
-  noLoop();
-  beginRecord(SVG, "marcos.svg");
+
+  beginRecord(SVG, "caras_uo258935.svg");
 }
 
 void draw() {
@@ -67,8 +66,6 @@ void draw() {
   //brow
   line(x-5, y-brow1, x-20, y-brow2);
   line(x+5, y-brow1, x+20, y-brow2);
-  
-  endRecord();
 }
 
 void keyPressed() {
@@ -83,7 +80,6 @@ void keyPressed() {
     eyey = random(5, 10);
   }
   if (key=='p') {
-
     pupilsLine=random(2, 5);
   }
   if (key=='m') {
@@ -96,5 +92,9 @@ void keyPressed() {
   if (key=='b') {
     brow1 = random(5, 20);
     brow2 = random(5, 20);
+  }
+  if (key=='q') {
+    endRecord();
+    exit();
   }
 }
